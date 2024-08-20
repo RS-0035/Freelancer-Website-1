@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c5f2d;
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    font-size: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+  
+  .banner {
+    background-image: url("https://via.placeholder.com/800x150");
+    background-size: cover;
+    height: 150px;
+    margin-top: 10px;
+  }
+  
+  .content {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .profile-card {
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .name {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  .username {
+    font-size: 14px;
+    color: #888;
+    margin: 5px 0;
+  }
+  
+  .description, .location {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+  }
+  
+  .stat {
+    font-size: 14px;
+  }
+  
+  .tagline {
+    font-size: 14px;
+    color: #333;
+    margin-top: 15px;
+  }
+  
+  .portfolio {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tab.selected {
+    border-color: black;
+    font-weight: bold;
+  }
+  
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .portfolio-item {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .portfolio-item.placeholder {
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #bbb;
+    cursor: pointer;
+  }
+  
