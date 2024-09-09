@@ -7,6 +7,7 @@ import imag5 from "../../imgs/tashkent.png";
 import imag6 from "../../imgs/sirdaryo.png";
 import "./Home.css";
 import Layout from "../../components/Layout/Layout";
+import { useNavigate } from "react-router-dom";
 
 const regions = [
   { name: "Toshkent shahar", imgSrc: imag1 },
@@ -18,13 +19,17 @@ const regions = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/category`);
+  };
   return (
     <div className="homepage">
       <main className="main-content">
         <h2 className="main-title">Viloyatlar va shahar bo’yicha ishlar!</h2>
         <div className="region-cards">
           {regions.map((region, index) => (
-            <div key={index} className="region-card">
+            <div onClick={handleClick} key={index} className="region-card">
               <img
                 src={region.imgSrc}
                 alt={region.name}
@@ -41,3 +46,4 @@ const Home = () => {
 };
 
 export default Home;
+  

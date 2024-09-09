@@ -1,19 +1,22 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children, userType }) => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-    const storedUserType = localStorage.getItem('userType');
+const ProtectedRoute = ({ children, role }) => {
+  const isRegistered = localStorage.getItem("isRegistered");
+  const userRole = localStorage.getItem("userRole");
 
-    if (!isAuthenticated) {
-        return <Navigate to="/login" />;
-    }
+  // Check if the user is registered
+  if (!isRegistered) {
+    return <Navigate to="/register" replace />;
+  }
 
-    if (userType && storedUserType !== userType) {
-        return <Navigate to="/" />;
-    }
+  // Check if the user has the correct role (if a role is required for the route)
+  if (role && userRole !== role) {
+    return <Navigate to="/" replace />;
+  }
 
-    return children;
+  // If all checks pass, render the children components
+  return children;
 };
 
 export default ProtectedRoute;

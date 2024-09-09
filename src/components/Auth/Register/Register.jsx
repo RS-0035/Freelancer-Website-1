@@ -1,30 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Register = ({ setEmails }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [userType, setUserType] = useState("client");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem("userRole");
+    if (storedRole) {
+      setRole(storedRole);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    console.log(users);
+
+    // Ensure it's an array
+    if (!Array.isArray(users)) {
+      users = [];
     }
-    // Registration logic here
-    const userData = {
+
+    const user = {
       email,
       password,
-      userType,
+      role,
     };
-    // Save userData in your database
-    localStorage.setItem("isAuthenticated", "true");
-    localStorage.setItem("userType", userType);
-    navigate("/");
+
+    const existEmail = users.some((user) => user.email === email);
+
+    if (existEmail) {
+      alert("This email is already registered. Please use a different email.");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } else {
+      const newUser = { email, password, role };
+
+      users.push(newUser);
+
+      localStorage.setItem("users", JSON.stringify(users));
+
+      setEmail("");
+      setPassword("");
+      setRole("");
+
+      console.log("Registration successful!");
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("isRegistered", "true");
+      localStorage.setItem("CurrentEmail", email);
+      if (role === "client") {
+        setEmails(email);
+        navigate("/");
+      } else if (role === "freelancer") {
+        setEmails(email);
+        navigate("/home-two");
+      }
+    }
   };
 
   return (
@@ -61,15 +98,6 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </div>
-        <div>
-          <select
-            value={userType}
-            onChange={(e) => setUserType(e.target.value)}
-          >
-            <option value="client">Client</option>
-            <option value="artisan">Artisan</option>
-          </select>
         </div>
         <button type="submit" className="signup-btn">
           Register

@@ -1,7 +1,4 @@
 /* HomePage.css */
-body {
-    font-family: Arial, sans-serif;
-}
 
 .header {
     display: flex;
@@ -83,7 +80,6 @@ body {
 }
 
 .region-button {
-    position: absolute;
     bottom: 20px;
     right: 20px;
     background-color: white;

@@ -2,17 +2,54 @@ import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setEmails }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userType = "client"; // Retrieve user type from database based on email/password
-    localStorage.setItem("isAuthenticated", "true");
-    localStorage.setItem("userType", userType);
-    navigate("/");
+
+    const storedUserData = JSON.parse(localStorage.getItem("users")) || [];
+    const selectedRole = localStorage.getItem("userRole");
+    console.log(storedUserData);
+
+    if (Array.isArray(storedUserData)) {
+      // Find the user that matches the provided email and password
+      const user = storedUserData.find(
+        (user) => user.email === email && user.password === password
+      );
+      console.log(user.role);
+      console.log(selectedRole);
+
+      if (user) {
+        const registeredRole = user.role;
+
+        // Validate that the selected role matches the registered role
+        if (selectedRole === registeredRole) {
+          localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("userType", registeredRole);
+
+          // Navigate based on the registered role
+          if (registeredRole === "client") {
+            setEmails(email);
+            navigate("/");
+          } else if (registeredRole === "freelancer") {
+            setEmails(email);
+            navigate("/home-two");
+          }
+        } else {
+          alert(
+            "You cannot log in with this role. Please select the correct role."
+          );
+        }
+      } else {
+        alert("Invalid email or password. Please try again.");
+      }
+    } else {
+      // Handle the case where storedUserData is not an array
+      alert("User data is corrupted.");
+    }
   };
 
   return (

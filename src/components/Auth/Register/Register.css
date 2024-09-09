@@ -12,7 +12,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
+    width: 350px;
 }
 
 .registration-form h2 {
@@ -23,7 +23,10 @@
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
+    width: 85%;
+    margin: 15px auto;
 }
+
 .form-group label {
     display: flex;
     justify-content: flex-start;
@@ -36,6 +39,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
+    outline: none;
 }
 
 .signup-btn {
@@ -46,7 +50,7 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    width: 100%;
+    width: 85%;
 }
 
 .signup-btn:hover {

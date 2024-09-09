@@ -4,10 +4,10 @@ import "./NotFound.css";
 
 const NotFound = () => {
   return (
-    <div>
-      <h2>Page Not Found</h2>
-      <p>Sorry, the page you are looking for does not exist.</p>
-      <Link to="/">Go to Home</Link>
+    <div className="not-found-container">
+      <h2 className="not-found-title">Page Not Found</h2>
+      <p className="not-found-message">Sorry, the page you are looking for does not exist.</p>
+      <Link to="/" className="not-found-link">Go to Home</Link>
     </div>
   );
 };

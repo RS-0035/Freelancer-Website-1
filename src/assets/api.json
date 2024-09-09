@@ -1,0 +1,29 @@
+{
+    "services": [
+      { "id": 1, "name": "Dasturlash & IT" },
+      { "id": 2, "name": "Reklama & Marketing" },
+      { "id": 3, "name": "Grafika & Dizayn" },
+      { "id": 4, "name": "Video & Animatsiya" },
+      { "id": 5, "name": "Hunarmandchilik" },
+      { "id": 6, "name": "Qo’l mehnati" }
+    ],
+    "freelancers": [
+      {
+        "id": 1,
+        "name": "Ahmadjon",
+        "title": "Web programmer",
+        "description": "Teacher",
+        "likes": "1,1K",
+        "imgSrc": "path_to_image/user1.png"
+      },
+      {
+        "id": 2,
+        "name": "Dilshod",
+        "title": "Graphic Designer",
+        "description": "Creative artist",
+        "likes": "900",
+        "imgSrc": "path_to_image/user2.png"
+      }
+    ]
+  }
+  

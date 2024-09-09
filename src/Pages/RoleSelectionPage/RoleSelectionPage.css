@@ -1,0 +1,45 @@
+.role-selection-page {
+    text-align: center;
+    padding: 50px;
+    background-color: #f4f4f4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.role-options {
+    display: flex;
+    gap: 20px;
+}
+
+.role-option {
+    background: #ffffff;
+    border: 2px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    width: 200px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.role-option:hover {
+    background-color: #e6e6e6;
+    border-color: #2B8a6C;
+}
+
+.role-option h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.role-option p {
+    font-size: 16px;
+    color: #666;
+}

@@ -1,28 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ServicesPage.css";
-import sampleImage from "../../imgs/design.png";
-
-const services = [
-  "Dasturlash & IT",
-  "Reklama & Marketing",
-  "Grafika & Dizayn",
-  "Video & Animatsiya",
-  "Hunarmandchilik",
-  "Qo’l mehnati",
-];
-
-const freelancers = [
-  {
-    name: "Azamatjon",
-    title: "Web programmer",
-    description: "Teacher\nRobotics specialist",
-    likes: "1,2K",
-    imgSrc: sampleImage,
-  },
-  // Add more freelancers here
-];
+import sampleImage from "../../imgs/user.png";
+import { useNavigate } from "react-router-dom";
+import assets from '../../'
 
 const ServicesPage = () => {
+  const [services, setServices] = useState([]);
+  const [freelancers, setFreelancers] = useState([]);
+  const navigate = useNavigate();
+
+  // Xizmatlar va freelancerlarni yuklab olish uchun useEffect
+  useEffect(() => {
+    // Xizmatlarni yuklash
+    fetch("http://localhost:5000/services")
+      .then((response) => response.json())
+      .then((data) => setServices(data))
+      .catch((error) => console.error("Xizmatlarni yuklashda xatolik: ", error));
+
+    // Freelancerlarni yuklash
+    fetch("http://localhost:5000/freelancers")
+      .then((response) => response.json())
+      .then((data) => setFreelancers(data))
+      .catch((error) => console.error("Freelancerlarni yuklashda xatolik: ", error));
+  }, []);
+
+  const handleMoveProfile = () => {
+    navigate(`/profile`);
+  };
+
   return (
     <div className="services-page">
       <header className="header">
@@ -38,7 +43,7 @@ const ServicesPage = () => {
           <ul>
             {services.map((service, index) => (
               <li key={index}>
-                <span>{service}</span>
+                <span>{service.name}</span>
                 <span className="arrow">→</span>
               </li>
             ))}
@@ -46,10 +51,15 @@ const ServicesPage = () => {
         </div>
         <div className="freelancers">
           {freelancers.map((freelancer, index) => (
-            <div key={index} className="freelancer-card">
+            <div
+              onClick={handleMoveProfile}
+              key={index}
+              className="freelancer-card"
+              style={{ cursor: "pointer" }}
+            >
               <div className="freelancer-header">
                 <img
-                  src={freelancer.imgSrc}
+                  src={freelancer.imgSrc || sampleImage}
                   alt={freelancer.name}
                   className="freelancer-image"
                 />
