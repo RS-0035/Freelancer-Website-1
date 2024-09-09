@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./ServicesPage.css";
 import sampleImage from "../../imgs/user.png";
 import { useNavigate } from "react-router-dom";
-import assets from '../../'
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
   const [freelancers, setFreelancers] = useState([]);
   const navigate = useNavigate();
 
-  // Xizmatlar va freelancerlarni yuklab olish uchun useEffect
   useEffect(() => {
     // Xizmatlarni yuklash
     fetch("http://localhost:5000/services")
